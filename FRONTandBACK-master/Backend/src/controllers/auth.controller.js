@@ -25,11 +25,6 @@ async function register(req,res){
       console.log("al menos 4 letras en al contraseña")
     }
 
-    if (errors.length > 0 ){
-      res.render('../../public/index.html' , {errors})
-    }
-
-
     if(!newUsuario.Name || !newUsuario.Surname || !newUsuario.Pass){
       return res.status(400).send({status:"Error",message:"Los campos están incompletos"})
     }
@@ -43,7 +38,7 @@ async function register(req,res){
     else{
       newUsuario.save();
       console.log(newUsuario)
-      return res.status(201).json({ status: "Success", message: "Usuario registrado correctamente", redirect: "/api/login" })
+      return res.status(201).json({ status: "Success", message: "Usuario registrado correctamente", redirect: "/login" })
     }
 }
 
@@ -51,10 +46,14 @@ async function login (req ,res){
   const newUsuario = new Usuario({
     Email: req.body.Email,
     Pass: req.body.Pass})
-    const emailUser = await Usuario.findOne({Email: newUsuario.Email})
-    if (emailUser){
+    const emailUserDb = await Usuario.findOne({Email: newUsuario.Email})
+    const passUserDb = await Usuario.findOne({Pass:newUsuario.Pass})
+
+    //tiene que existir por lo menos 1 opcion
+
+    if (emailUserDb && passUserDb && newUsuario.Email==emailUserDb.Email && newUsuario.Pass == passUserDb.Pass){
       console.log("user loged with: " + newUsuario.Email )
-      return res.status(201).json({ status: "logeado", message: "Usuario registrado correctamente", redirect: "/api/loginUser" })
+      return res.status(201).json({ status: "logeado", message: "Usuario registrado correctamente", redirect: "/" })
     }else{
       res.status(400).send({status:"Error",message:"EROOR EN LA AUTENTICACION"})
     }

@@ -83,7 +83,8 @@
         "us": "Nosotros",
         "project": "Proyectos",
         "buy": "Comprar",
-        "login": "Iniciar sesión"
+        "login": "Iniciar sesión",
+        "registro": "Registrarse"
     },
 
     "Footer":{
@@ -140,10 +141,17 @@
 
     "Login":{
         "login-title":"Tomá acción y preservá el medio ambiente",
-        "login-form-title": "Inicia sesión",
         "email-field": "Correo Electrónico",
+        "login-form-title": "Inicia sesión",
+        "register-form-title": "Registrate",
+        "nombre-field": "Nombre",
+        "apellido-field": "Apellido",
+        "company-field": "Compañia",
+        "pais-field": "Pais",
         "password-field": "Contraseña",
+        "password2-field": "Repetir constraseña",
         "login-btn": "Iniciar sesión",
+        "register-btn": "Registrarse",
         "forgot-password": "¿Olvidaste tu contraseña?"
     }
 

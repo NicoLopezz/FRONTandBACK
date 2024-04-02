@@ -88,7 +88,10 @@ function Navbar(setFirstLoad) {
             <a href="/nosotros">{navIdioms("us")}</a>
           </li>
           <li>
-            <a href="/proyectos"> {navIdioms("project")} </a>
+            <a href="/proyectos">{navIdioms("project")}</a>
+          </li>
+          <li>
+            <a href="/registro">{navIdioms("registro")}</a>
           </li>
           <li>
             <a href="/login">{navIdioms("login")}</a>

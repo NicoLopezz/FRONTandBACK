@@ -1,9 +1,10 @@
 .loginForm{
-    display: flex;
+    display: grid;
     flex-direction: column;
     font-family: var(--montserrat);
     min-width: 400px;
 }
+
 
 .loginForm h3{
     font-size: clamp(20px, 2.22vw, 34px);

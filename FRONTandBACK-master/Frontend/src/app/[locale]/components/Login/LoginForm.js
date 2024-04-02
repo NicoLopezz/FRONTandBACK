@@ -1,4 +1,7 @@
 //Assets
+
+//REGISTER
+
 "use client";
 import logoOxygen from "../../../../../public/assets/images/logo.png";
 import Image from "next/image";
@@ -6,7 +9,7 @@ import { useTranslations } from "next-intl";
 import "./login.css";
 import { useState } from "react";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const loginIdioms = useTranslations("Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,16 +17,31 @@ const LoginForm = () => {
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
-
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let datosUsuario = {Pass : password,  Email : email}
+    let datosUsuarioJson = JSON.stringify(datosUsuario);
+
+    console.log(datosUsuarioJson)
     // Aquí puedes agregar la lógica para enviar la solicitud de inicio de sesión con los datos ingresados
-    console.log("Correo electrónico:", email);
-    console.log("Contraseña:", password);
+    
+    const res = await fetch("http://localhost:3001/api/login", {     
+      method: 'POST',
+          headers:
+          {
+          'Content-Type': 'application/json' 
+          },
+          body: datosUsuarioJson
+      })
+      const resJson = await res.json();
+      if(resJson.redirect){
+          window.location.href = resJson.redirect;
+        }
+    
   };
 
   return (
@@ -32,6 +50,7 @@ const LoginForm = () => {
         <Image src={logoOxygen} alt="logo" className="loginFormImg" />
         <h3>{loginIdioms("login-form-title")}</h3>
         <form onSubmit={handleSubmit}>
+         
           <div className="formField">
             <label htmlFor="email">{loginIdioms("email-field")}</label>
             <input
@@ -39,7 +58,6 @@ const LoginForm = () => {
               id="email"
               value={email}
               onChange={handleEmailChange}
-              required
             />
           </div>
           <div className="formField">
@@ -49,10 +67,9 @@ const LoginForm = () => {
               id="password"
               value={password}
               onChange={handlePasswordChange}
-              required
             />
-            <a>{loginIdioms("forgot-password")}</a>
           </div>
+
           <button className="submitBtn" type="submit">
             {loginIdioms("login-btn")}
           </button>
@@ -62,4 +79,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;
