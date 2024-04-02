@@ -25,6 +25,7 @@
     "@babel/cli": "^7.23.9",
     "@babel/core": "^7.24.0",
     "@babel/node": "^7.23.9",
-    "@babel/preset-env": "^7.24.0"
+    "@babel/preset-env": "^7.24.0",
+    "@types/node": "^20.12.2"
   }
 }
